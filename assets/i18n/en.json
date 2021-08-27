@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Tic tac toe"
+  },
+  "appbar": {
+    "button": {
+      "change_theme": {
+        "tooltip": "Change application theme"
+      }
+    }
+  },
+  "form": {
+  },
+  "page": {
+    "error": {
+      "default_message": "Oooops, this didn't supposed to happen"
+    },
+    "main_menu": {
+      "button": {
+        "play_vs_pc": {
+          "text": "Play vs AI"
+        },
+        "play_offline": {
+          "text": "One vs one"
+        },
+        "play_online": {
+          "text": "Online game"
+        }
+      },
+      "header_text": "Welcome to the game",
+      "welcome_text": "Please choose game"
+    }
+  }
+}

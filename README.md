@@ -1,2 +1,3 @@
-# tictactoe-flutter
-Tic tac toe game made in flutter
+# tictactoe
+
+Tic tac toe game in flutter
