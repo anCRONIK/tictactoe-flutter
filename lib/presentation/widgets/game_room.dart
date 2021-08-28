@@ -6,17 +6,13 @@ import 'game_widgets.dart';
 class GameRoom extends StatelessWidget {
   GameRoom({Key? key}) : super(key: key);
 
-  final List<Widget> gameCards = [];
+  final List<Widget> gameCards = List.filled(9, const BlankGameCard());
 
-  final x = 3;
-  final y = 3;
+  final int x = 3;
+  final int y = 3;
 
   @override
   Widget build(BuildContext context) {
-    for (var i = 0; i < x * y; ++i) {
-      gameCards[i] = const BlankGameCard();
-    }
-
     return GridView.count(
       crossAxisCount: x,
       //FIXME padding
@@ -24,6 +20,7 @@ class GameRoom extends StatelessWidget {
       //FIXME spacing
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
+      shrinkWrap: true,
       children: gameCards,
     );
   }

@@ -20,7 +20,7 @@ class ApplicationTranslations extends Translations {
 
 /// Method for initializing translations to be used by application
 Future<Translations> initTranslations() async {
-  final Logger log = Logger('ApplicationTranslations');
+  final Logger _log = Logger('ApplicationTranslations');
 
   TranslationFileRepository? repository = TranslationFileRepositoryImpl(TRANSLATION_FILES_PATH);
 
@@ -31,34 +31,12 @@ Future<Translations> initTranslations() async {
     translationKeys[localeAsString] = HashMap();
 
     try {
-      final translationMap = await repository.loadTranslationFileAsMap(locale);
-      translationKeys[localeAsString] = _toTranslationKeys(translationMap);
+      translationKeys[localeAsString] = await repository.loadTranslationFile(locale);
     } catch (e) {
-      log.severe('Error while loading translations for file $locale', e);
+      _log.severe('Error while loading translations for file $locale', e);
     }
   }
   repository = null; //gc
 
   return Future.value(ApplicationTranslations(translationKeys));
-}
-
-Map<String, String> _toTranslationKeys(Map translationMap) {
-  return _toTranslationKeysRecursive(HashMap<String, String>(), translationMap);
-}
-
-Map<String, String> _toTranslationKeysRecursive(Map<String, String> translationKeys, Map translationMap, [String? previousKeyPath]) {
-  if (translationMap.isNotEmpty) {
-    translationMap.forEach((key, value) {
-      String currentKeyPath = key.toString();
-      if (null != previousKeyPath) {
-        currentKeyPath = '$previousKeyPath.$key';
-      }
-      if (value is Map) {
-        _toTranslationKeysRecursive(translationKeys, value, currentKeyPath);
-      } else {
-        translationKeys[currentKeyPath] = value.toString();
-      }
-    });
-  }
-  return translationKeys;
 }

@@ -26,8 +26,13 @@ class BlankGameCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    return _buildGameCardWidget(context);
   }
 }
 
-_buildGameCardWidget(BuildContext context) {}
+_buildGameCardWidget(BuildContext context) {
+  return Card(
+    shape: RoundedRectangleBorder(),
+    child: Text(''),
+  );
+}

@@ -17,27 +17,19 @@ class MainMenuPage extends AbstractApplicationPage {
   Widget buildPortraitLayout(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // play vs pc
-        MaterialButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: BorderSide(color: Theme.of(context).primaryColor),
-          ),
+        ElevatedButton(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [const Icon(Icons.computer), Text('page.main_menu.button.play_vs_pc.text'.tr.toUpperCase())],
           ),
-          onPressed: () => Get.toNamed(AppRoutes.ROOT),
+          onPressed: () => Get.toNamed(AppRoutes.GAME_OFFLINE),
         ),
 
         // play vs player
-        MaterialButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: BorderSide(color: Theme.of(context).primaryColor),
-          ),
+        ElevatedButton(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [const Icon(Icons.people), Text('page.main_menu.button.play_offline.text'.tr.toUpperCase())],
@@ -46,11 +38,7 @@ class MainMenuPage extends AbstractApplicationPage {
         ),
 
         //play online
-        MaterialButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: BorderSide(color: Theme.of(context).primaryColor),
-          ),
+        ElevatedButton(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [const Icon(Icons.mail), Text('page.main_menu.button.play_online.text'.tr.toUpperCase())],

@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../styles.dart';
+import '../../domain/entity/theme_data_values.dart';
+import '../../domain/repository/theme_data_repository.dart';
 import 'abstract_application_page.dart';
-import 'app_bar_widgets.dart';
 
 /// Class which handles application global layout. Every page should use this class to .
 /// Layout is modified depending on the device its orientation.
 class ApplicationBasicLayout {
-  static final _appBar = AppBar(
-    actions: [changeAppThemeActionButton],
-  );
-
   final BuildContext _context;
 
   ApplicationBasicLayout(this._context);
@@ -39,7 +36,21 @@ class ApplicationBasicLayout {
   Widget _buildMobileLayout(AbstractApplicationPage _page) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: _appBar,
+        //appbar
+        appBar: AppBar(
+          actions: [
+            ObxValue(
+                (darkMode) => IconButton(
+                    icon: Icon(darkMode == true ? Icons.dark_mode : Icons.light_mode),
+                    tooltip: 'appbar.button.change_theme.tooltip'.tr,
+                    onPressed: () {
+                      Get.find<ThemeDataRepository>().storeUserTheme(Get.isDarkMode ? ThemeDataValue.light : ThemeDataValue.dark);
+                      Get.changeTheme(darkMode == true ? AppThemeTemplates.lightTheme : AppThemeTemplates.darkTheme);
+                    }),
+                Get.isDarkMode.obs)
+          ],
+        ),
+        //body
         body: SafeArea(
             child: SingleChildScrollView(
                 padding: defaultScreenPadding,
