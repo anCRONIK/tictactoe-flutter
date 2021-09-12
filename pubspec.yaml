@@ -12,6 +12,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  translations_loader: ^1.0.1
 
   cupertino_icons: ^1.0.3
 
@@ -26,7 +30,6 @@ dev_dependencies:
     sdk: flutter
 
   #testing
-  test: ^1.15.7 #can not upgrade to null safety versions because of conflicts with flutter_test
   mockito: ^5.0.15
 
   flutter_lints: ^1.0.4

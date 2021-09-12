@@ -44,7 +44,7 @@ class ApplicationBasicLayout {
                     icon: Icon(darkMode == true ? Icons.dark_mode : Icons.light_mode),
                     tooltip: 'appbar.button.change_theme.tooltip'.tr,
                     onPressed: () {
-                      Get.find<ThemeDataRepository>().storeUserTheme(Get.isDarkMode ? ThemeDataValue.light : ThemeDataValue.dark);
+                      Get.find<ThemeDataRepository>().storeUserTheme(darkMode == true ? ThemeDataValue.light : ThemeDataValue.dark);
                       Get.changeTheme(darkMode == true ? AppThemeTemplates.lightTheme : AppThemeTemplates.darkTheme);
                     }),
                 Get.isDarkMode.obs)

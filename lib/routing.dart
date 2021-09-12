@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import 'package:tictactoe/presentation/pages/offline_game_page.dart';
 
+import '../presentation/manager/game_room_controller.dart';
+import '../presentation/pages/offline_game_page.dart';
 import 'presentation/pages/error_page.dart';
 import 'presentation/pages/main_menu_page.dart';
 
@@ -11,12 +12,17 @@ class AppPages {
 
   static final routes = [
     errorRoute,
-    GetPage(
-        name: AppRoutes.ROOT,
-        page: () => const MainMenuPage(),
-        middlewares: [],
-        children: [GetPage(name: AppRoutes.GAME_OFFLINE, page: () => const OfflineGamePage())]),
+    GetPage(name: AppRoutes.ROOT, page: () => const MainMenuPage(), middlewares: [], children: [
+      GetPage(name: AppRoutes.GAME_OFFLINE, page: () => const OfflineGamePage(), binding: GameRoomBinding()),
+    ]),
   ];
+}
+
+class GameRoomBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<GameRoomController>(() => GameRoomController());
+  }
 }
 
 abstract class AppRoutes {

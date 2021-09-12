@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:translations_loader/translations_loader.dart';
 
 import 'data/repository/theme_data_repository_impl.dart';
 import 'domain/entity/theme_data_values.dart';
@@ -17,7 +18,7 @@ Future<void> main() async {
   Get.put(ThemeDataRepositoryImpl(sharedPreferences) as ThemeDataRepository);
 
   runApp(GetMaterialApp(
-      translations: await initTranslations(),
+      translations: ApplicationTranslations(await TranslationsLoader.loadTranslations(TRANSLATION_FILES_PATH)),
       locale: Get.deviceLocale,
       fallbackLocale: DEFAULT_LOCALE,
       theme: Get.find<ThemeDataRepository>().fetchUserTheme() == ThemeDataValue.light
